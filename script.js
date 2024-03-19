@@ -76,17 +76,13 @@ function drawPose(pose) {
 
 function playSound(className) {
     switch (className) {
-        case "TOPO":
+        case "prato":
             document.getElementById("snare_sound").play();
             break;
-        case "Class 11":
+        case "tambor":
             document.getElementById("kick_sound").play();
             break;
-        case "hihat":
-            document.getElementById("hihat_sound").play();
-            break;
-        // Adicionar mais casos para outras classes, se necessário
-        default:
+                default:
             console.error("Classe de som não reconhecida:", className);
     }
 }
