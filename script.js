@@ -77,10 +77,10 @@ function drawPose(pose) {
 function playSound(className) {
     switch (className) {
         case "Prato":
-            document.getElementById("snare").play();
+            document.getElementById("snare-sound").play();
             break;
         case "Tambor":
-            document.getElementById("kick").play();
+            document.getElementById("kick-sound").play();
             break;
         case "Desligada":
             break;
