@@ -83,7 +83,6 @@ function playSound(className) {
             document.getElementById("kick").play();
             break;
         case "Desligada":
-            document.getElementById("hihat").play();
             break;
                 default:
             console.error("Classe de som não reconhecida:", className);
