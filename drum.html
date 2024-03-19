@@ -28,11 +28,12 @@
     <div id="hihat" class="drum-pad">Hi-Hat</div>
     <!-- Adicione mais divs para outros pads da bateria -->
 </div>
+<div id="label-container"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
 <script>
-    const URL = "https://gabrielagithub.github.io/drum/";
+    const URL = "https://gabrielagithub.github.io/drum/Poses/";
     let model, webcam, ctx, labelContainer, maxPredictions;
 
     async function init() {
@@ -56,6 +57,12 @@
         ctx = canvas.getContext("2d");
 
         labelContainer = document.getElementById("label-container");
+        if (!labelContainer) {
+            labelContainer = document.createElement("div");
+            labelContainer.id = "label-container";
+            document.body.appendChild(labelContainer);
+        }
+
         for (let i = 0; i < maxPredictions; i++) {
             labelContainer.appendChild(document.createElement("div"));
         }
@@ -74,22 +81,11 @@
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            labelContainer.childNodes[i].innerHTML = classPrediction;
-
-            // Adicione lógica de reprodução de som aqui
-            if (prediction[i].className === "TOPO" && prediction[i].probability > 0.5) {
-                // Reproduza o som do snare quando a pose correspondente for detectada
-                console.log("Snare sound triggered");
-            } else if (prediction[i].className === "pose_kick" && prediction[i].probability > 0.5) {
-                // Reproduza o som do kick quando a pose correspondente for detectada
-                console.log("Kick sound triggered");
-            } else if (prediction[i].className === "pose_hihat" && prediction[i].probability > 0.5) {
-                // Reproduza o som do hi-hat quando a pose correspondente for detectada
-                console.log("Hi-Hat sound triggered");
+            if (labelContainer.childNodes[i]) {
+                labelContainer.childNodes[i].innerHTML = classPrediction;
             }
         }
 
-        // Desenhe as poses na tela
         drawPose(pose);
     }
 
@@ -104,7 +100,6 @@
         }
     }
 
-    // Inicialize a detecção de pose ao carregar a página
     window.onload = init;
 </script>
 </body>
