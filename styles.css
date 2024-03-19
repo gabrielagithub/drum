@@ -10,4 +10,13 @@
     height: 100px;
     margin: 10px;
     cursor: pointer;
+    position: relative; /* Adiciona posicionamento relativo */
+}
+
+.drum-pad img {
+    max-width: 100%; /* Define a largura máxima da imagem como 100% da largura da div */
+    max-height: 100%; /* Define a altura máxima da imagem como 100% da altura da div */
+    position: absolute; /* Adiciona posicionamento absoluto */
+    top: 0; /* Posiciona a imagem no topo da div */
+    left: 0; /* Posiciona a imagem no canto esquerdo da div */
 }
