@@ -20,3 +20,38 @@
     top: 0; /* Posiciona a imagem no topo da div */
     left: 0; /* Posiciona a imagem no canto esquerdo da div */
 }
+/* Animação para o tambor */
+@keyframes tambor-animation {
+    0% {
+        transform: translateY(0); /* Inicia a imagem na posição original */
+    }
+    50% {
+        transform: translateY(-10px); /* Move a imagem do tambor para cima */
+    }
+    100% {
+        transform: translateY(0); /* Retorna a imagem do tambor para a posição original */
+    }
+}
+
+/* Animação para o prato */
+@keyframes prato-animation {
+    0% {
+        transform: rotate(0deg); /* Inicia a imagem do prato na rotação original */
+    }
+    50% {
+        transform: rotate(15deg); /* Gira a imagem do prato */
+    }
+    100% {
+        transform: rotate(0deg); /* Retorna a imagem do prato para a rotação original */
+    }
+}
+
+/* Aplica a animação ao tambor */
+.drum-pad.tambor img {
+    animation: tambor-animation 0.2s linear;
+}
+
+/* Aplica a animação ao prato */
+.drum-pad.prato img {
+    animation: prato-animation 0.2s linear;
+}
