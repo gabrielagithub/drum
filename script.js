@@ -21,9 +21,9 @@ async function init() {
     document.body.appendChild(canvas);
     ctx = canvas.getContext("2d");
 
-    // Selecione o elemento label-container
+    // Selecionar o elemento label-container
     labelContainer = document.getElementById("label-container");
-    // Verifique se o elemento label-container existe antes de tentar adicionar elementos filho
+    // Verificar se o elemento label-container existe antes de tentar adicionar elementos filhos
     if (labelContainer) {
         for (let i = 0; i < maxPredictions; i++) {
             labelContainer.appendChild(document.createElement("div"));
@@ -47,19 +47,19 @@ async function predict() {
         const classPrediction = prediction[i].className;
         const probability = prediction[i].probability;
 
-        // Atualize a interface do usuário com a previsão atual
+        // Atualizar a interface do usuário com a previsão atual
         if (labelContainer && labelContainer.childNodes[i]) {
             labelContainer.childNodes[i].innerHTML = `${classPrediction}: ${probability.toFixed(2)}`;
         }
 
-        // Verifique se a probabilidade da previsão atual é maior que o limiar
+        // Verificar se a probabilidade da previsão atual é maior que o limiar
         if (probability > 0.5) {
-            // Execute a função de reprodução de som correspondente à classe de pose
+            // Executar a função de reprodução de som correspondente à classe de pose
             playSound(classPrediction);
         }
     }
 
-    // Desenhe as poses na tela
+    // Desenhar as poses na tela
     drawPose(pose);
 }
 
@@ -74,3 +74,22 @@ function drawPose(pose) {
     }
 }
 
+function playSound(className) {
+    switch (className) {
+        case "TOPO":
+            document.getElementById("snare_sound").play();
+            break;
+        case "Class 11":
+            document.getElementById("kick_sound").play();
+            break;
+        case "hihat":
+            document.getElementById("hihat_sound").play();
+            break;
+        // Adicionar mais casos para outras classes, se necessário
+        default:
+            console.error("Classe de som não reconhecida:", className);
+    }
+}
+
+// Inicializar a detecção de pose ao carregar a página
+window.onload = init;
